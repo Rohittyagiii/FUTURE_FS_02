@@ -1,0 +1,98 @@
+.client-table-container {
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
+}
+
+.table-header h2 {
+  margin-top: 0;
+
+  color: #111827;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.client-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 800px;
+}
+
+.client-table th {
+  background: #f9fafb;
+
+  text-align: left;
+
+  padding: 14px;
+
+  color: #4b5563;
+
+  font-size: 14px;
+}
+
+.client-table td {
+  padding: 14px;
+
+  border-top: 1px solid #e5e7eb;
+
+  color: #374151;
+}
+
+.status-badge {
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  text-transform: capitalize;
+}
+
+.status-badge.new {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-badge.contacted {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-badge.converted {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.delete-btn {
+  background: #ef4444;
+
+  color: white;
+
+  border: none;
+
+  padding: 7px 12px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+.no-clients {
+  color: #6b7280;
+}

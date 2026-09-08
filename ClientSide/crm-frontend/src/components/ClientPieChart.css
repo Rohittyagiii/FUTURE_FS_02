@@ -1,0 +1,13 @@
+.pie-chart-container {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.pie-chart-container h2 {
+  margin-top: 0;
+
+  color: #111827;
+}
