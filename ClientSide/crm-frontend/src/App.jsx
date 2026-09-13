@@ -8,6 +8,7 @@ import {
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -16,9 +17,12 @@ function App() {
 
         <Route
           path="/"
-          element={<Navigate to="/dashboard" />}
+          element={<Navigate to="/home" />}
         />
-
+        <Route
+        path="home"
+        element={<Home/>}
+        />
         <Route
           path="/dashboard"
           element={<Dashboard />}

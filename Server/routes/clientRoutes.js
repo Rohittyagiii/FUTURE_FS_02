@@ -28,18 +28,18 @@ const {
 } = require("../controllers/clientController");
 
 // GET all clients
-router.get("/", getClients);
+router.get("/clients", getClients);
 
 // GET single client
-router.get("/:id", getClientById);
+router.get("/clients/:id", getClientById);
 
 // CREATE client
-router.post("/", createClient);
+router.post("/submit-client", createClient);
 
 // UPDATE client
-router.put("/:id", updateClient);
+router.put("/update/:id", updateClient);
 
 // DELETE client
-router.delete("/:id", deleteClient);
+router.delete("/delete/:id", deleteClient);
 
 module.exports = router;

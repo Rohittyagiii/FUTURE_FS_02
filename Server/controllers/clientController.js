@@ -71,11 +71,13 @@ const createClient = async (req, res) => {
 
     res.status(201).json({
       message: "Client created successfully",
-      client: savedClient,
+      // id: savedClient._id,
+      success:true
     });
   } catch (error) {
     res.status(500).json({
       message: error.message,
+      success:false
     });
   }
 };

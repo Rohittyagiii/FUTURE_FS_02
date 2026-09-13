@@ -172,6 +172,8 @@
 
 // export default Dashboard;
 
+
+
 import { useEffect, useState } from "react";
 import {
   PieChart,
@@ -181,6 +183,15 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUsers,
+  faUserPlus,
+  faPhone,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
+
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -413,81 +424,88 @@ const Dashboard = () => {
 
 
           {/* ================= STAT CARDS ================= */}
+<div className="stats-grid">
 
-          <div className="stats-grid">
+  {/* TOTAL CLIENTS */}
+  <div className="stat-card blue">
 
-            <div className="stat-card blue">
+    <div className="stat-icon">
+      <FontAwesomeIcon icon={faUsers} />
+    </div>
 
-              <div className="stat-icon">
-                👥
-              </div>
+    <div>
+      <p>Total Clients</p>
 
-              <div>
-                <p>Total Clients</p>
-                <h2>{totalClients}</h2>
+      <h2>{totalClients}</h2>
 
-                <span className="growth">
-                  ↑ Clients in system
-                </span>
-              </div>
+      <span className="growth">
+        ↑ Clients in system
+      </span>
+    </div>
 
-            </div>
-
-
-            <div className="stat-card green">
-
-              <div className="stat-icon">
-                ＋
-              </div>
-
-              <div>
-                <p>New Clients</p>
-                <h2>{newClients}</h2>
-
-                <span className="growth">
-                  ↑ New clients
-                </span>
-              </div>
-
-            </div>
+  </div>
 
 
-            <div className="stat-card orange">
+  {/* NEW CLIENTS */}
+  <div className="stat-card green">
 
-              <div className="stat-icon">
-                📞
-              </div>
+    <div className="stat-icon">
+      <FontAwesomeIcon icon={faUserPlus} />
+    </div>
 
-              <div>
-                <p>Contacted</p>
-                <h2>{contactedClients}</h2>
+    <div>
+      <p>New Clients</p>
 
-                <span className="growth">
-                  ↑ Contacted clients
-                </span>
-              </div>
+      <h2>{newClients}</h2>
 
-            </div>
+      <span className="growth">
+        ↑ New clients
+      </span>
+    </div>
+
+  </div>
 
 
-            <div className="stat-card purple">
+  {/* CONTACTED */}
+  <div className="stat-card orange">
 
-              <div className="stat-icon">
-                ✓
-              </div>
+    <div className="stat-icon">
+      <FontAwesomeIcon icon={faPhone} />
+    </div>
 
-              <div>
-                <p>Converted</p>
-                <h2>{convertedClients}</h2>
+    <div>
+      <p>Contacted</p>
 
-                <span className="growth">
-                  ↑ Converted clients
-                </span>
-              </div>
+      <h2>{contactedClients}</h2>
 
-            </div>
+      <span className="growth">
+        ↑ Contacted clients
+      </span>
+    </div>
 
-          </div>
+  </div>
+
+
+  {/* CONVERTED */}
+  <div className="stat-card purple">
+
+    <div className="stat-icon">
+      <FontAwesomeIcon icon={faCheckCircle} />
+    </div>
+
+    <div>
+      <p>Converted</p>
+
+      <h2>{convertedClients}</h2>
+
+      <span className="growth">
+        ↑ Converted clients
+      </span>
+    </div>
+
+  </div>
+
+</div>
 
 
           {/* ================= CHART SECTION ================= */}
