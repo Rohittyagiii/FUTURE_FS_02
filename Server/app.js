@@ -30,6 +30,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const Client = require("./models/client");
+const Admin = require("./models/admin");
 const clientRoutes = require("./routes/clientRoutes");
 
 const app = express();
@@ -93,6 +94,33 @@ app.post("/save-client-details", async (req, res) => {
   })
 
 });
+
+
+
+
+
+
+app.post("/create-admin",async(req,res) => {
+   req.body.currentLoginTimestamp= new Date();
+   console.log("psyload",req.body);
+
+   const admin = new Admin(req.body);
+   const savedAdmin = await admin.save();
+
+   res.status(201).json(
+    {msg:"Admin Created Successfully",
+      adminId:savedAdmin._id
+    }
+   );
+
+
+});
+
+
+
+
+
+
 
 mongoose
   .connect(process.env.MONGO_URI)
