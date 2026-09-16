@@ -1,0 +1,13 @@
+ .mypage{
+  margin-top: 10px;
+  margin-bottom: 28px;
+
+  color: #1b2920;
+
+  font-family: "Inter", "Segoe UI", sans-serif;
+
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 600;
+
+  letter-spacing: -0.3px;
+}

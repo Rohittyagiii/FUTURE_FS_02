@@ -1,29 +1,3 @@
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const cors = require("cors");
-
-// const clientRoutes = require("./routes/client-routes");
-
-// const app = express();
-
-// app.use(cors());
-// app.use(express.json());
-
-// app.use("/api/clients", clientRoutes);
-
-// mongoose
-//   .connect("mongodb://127.0.0.1:27017/future-fs")
-//   .then(() => {
-//     console.log("MongoDB connected");
-
-//     app.listen(5000, () => {
-//       console.log("Server running on port 5000");
-//     });
-//   })
-//   .catch((error) => {
-//     console.log("MongoDB connection error:", error);
-//   });
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -95,15 +69,9 @@ app.post("/save-client-details", async (req, res) => {
 
 });
 
-
-
-
-
-
 app.post("/create-admin",async(req,res) => {
    req.body.currentLoginTimestamp= new Date();
-   console.log("psyload",req.body);
-
+   console.log("payload",req.body);
    const admin = new Admin(req.body);
    const savedAdmin = await admin.save();
 
@@ -112,10 +80,62 @@ app.post("/create-admin",async(req,res) => {
       adminId:savedAdmin._id
     }
    );
-
-
 });
 
+app.post("/login-admin",async (req,res) => {
+   console.log("payload", req.body);
+   const {email,password} = req.body  
+  if (!email) {
+    return res.json({
+      msg:"Email is required",
+      success:false
+    });
+  }
+  if(!password){
+    return res.json({
+      msg:"Password is required",
+      success:false
+    })
+  }
+
+  const userExits = await Admin.findOne(
+    {email:req.body.email}
+  )
+
+  if(!userExits){
+    return res.status(404).json({
+      success:false,
+      msg:"User is not register with this email"
+    })
+  }
+
+  const geniuneUser = await Admin.findOne({
+     $and:[
+      {email:req.body.email},
+      {password:req.body.password}
+     ]
+  });
+
+
+  if(!geniuneUser){
+       return res.status(404).json({
+        success:false,
+        msg:"password is incorrect"
+       })
+  };
+
+  const now = new Date();
+   geniuneUser.lastLoginTimestamp=geniuneUser.currentLoginTimestamp;
+  geniuneUser.currentLoginTimestamp = now;
+  console.log("check data ",geniuneUser);
+  await geniuneUser.save();
+
+  return res.status(200).json({
+    success: true,
+    msg: "Admin login successful!",
+    result:geniuneUser._id
+  });
+});
 
 
 

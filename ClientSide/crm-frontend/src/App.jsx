@@ -9,6 +9,7 @@ import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
 import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
         <Route
         path="home"
         element={<Home/>}
+        />
+         <Route
+        path="login"
+        element={<LoginPage/>}
         />
         <Route
           path="/dashboard"
