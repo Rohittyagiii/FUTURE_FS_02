@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const submitHandler = async (e)=>{
   e.preventDefault();
@@ -11,13 +12,13 @@ const submitHandler = async (e)=>{
 
   console.log(data);
 
- const response= await fetch("http://localhost:5000/save-client-details",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
-    },
-     body: JSON.stringify(data)
-  });
+ const response = await fetch(`${API_URL}/save-client-details`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+});
   const result = await response.json();
   console.log("API Response ",result);
   if(result.success){

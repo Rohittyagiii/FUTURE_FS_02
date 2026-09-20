@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
 import "./Clients.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
@@ -12,9 +13,7 @@ const Clients = () => {
 
   const fetchClients = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/clients"
-      );
+     const response = await fetch(`${API_URL}/api/clients`);
 
       const data = await response.json();
 
@@ -46,13 +45,12 @@ const Clients = () => {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/clients/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
+     const response = await fetch(
+  `${API_URL}/api/clients/${id}`,
+  {
+    method: "DELETE",
+  }
+);
       const data = await response.json();
 
       if (!response.ok) {

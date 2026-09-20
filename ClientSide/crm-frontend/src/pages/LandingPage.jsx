@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Landing.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const LandingPage = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const LandingPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/clients", {
+      const response = await fetch(`${API_URL}/api/clients`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

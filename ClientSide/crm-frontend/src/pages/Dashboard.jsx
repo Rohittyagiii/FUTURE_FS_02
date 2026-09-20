@@ -193,6 +193,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./Dashboard.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Dashboard = () => {
   const [clients, setClients] = useState([]);
@@ -201,9 +202,7 @@ const Dashboard = () => {
 
   const fetchClients = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/clients"
-      );
+      const response = await fetch(`${API_URL}/api/clients`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch clients");

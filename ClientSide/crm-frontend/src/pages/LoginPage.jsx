@@ -2,6 +2,7 @@ import React from "react";
 import "./LoginPage.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const submitHandler = async(e) => {
     console.log("login button clicked")
@@ -9,8 +10,8 @@ const submitHandler = async(e) => {
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData.entries());
   console.log("payload of login page data", data);
-   const response = await fetch("http://localhost:5000/login-admin", {
-        method: "POST",
+const response = await fetch(`${API_URL}/login-admin`, {
+          method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
