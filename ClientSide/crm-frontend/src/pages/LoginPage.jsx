@@ -1,13 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 const API_URL = import.meta.env.VITE_API_URL;
 
+
+
+
+const LoginPage = () => {
+    const navigate  = useNavigate();
+    const gotoDashboard= (page) =>{
+      navigate(page);
+    }
+
+
+    
 const submitHandler = async(e) => {
-    console.log("login button clicked")
   e.preventDefault();
-  const formData = new FormData(e.target);
+  console.log("data ",e.target)
+  const formElement = e.currentTarget.closest("form");
+    if (!formElement) return;
+
+    const formData = new FormData(formElement);
+  // const formData = new FormData(e.target);
   const data = Object.fromEntries(formData.entries());
   console.log("payload of login page data", data);
 const response = await fetch(`${API_URL}/login-admin`, {
@@ -20,17 +36,18 @@ const response = await fetch(`${API_URL}/login-admin`, {
       const result = await response.json();
   console.log("API Response ",result);
   if(result.success){
-   toast.success(result.msg ||"User logged In suck sex fully");
+   toast.success(result.msg ||"User logged In successfully");
       //  e.target.reset();
+       gotoDashboard("/dashboard");
   }else{
     toast.error(result.msg);
-      
   }
+
 };
 
 
 
-const LoginPage = () => {
+
   return (
     <>
       <div className="container-fluid mypage">
@@ -41,7 +58,7 @@ const LoginPage = () => {
         </div>
         <div className="row" >
           <div className="col-12 col-md-4 offset-4">
-            <form onSubmit={submitHandler}>
+            <form >
               <div className="form text-center mt-3">
                 <input
                   className="form-control my-2"
@@ -57,7 +74,7 @@ const LoginPage = () => {
                   id="password"
                   placeholder="Enter your password."
                 />
-                <button type="submit" className="btn btn-primary">
+                <button type="button" className="btn btn-primary" onClick={submitHandler}>
                   LOGIN
                 </button>
               </div>

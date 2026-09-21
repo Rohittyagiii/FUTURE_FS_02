@@ -137,10 +137,81 @@ app.post("/login-admin",async (req,res) => {
   });
 });
 
+app.put("/changeStatus", async (req, res) => {
+  try {
+    const { _id, status } = req.body;
+
+    // Validate that both ID and status are provided
+    if (!_id || !status) {
+      return res.status(400).json({ 
+        success: false, 
+        msg: "Both _id and status are required." 
+      });
+    }
 
 
+    // Check if the user/admin exists
+    const userExists = await Client.findById(_id);
+    if (!userExists) {
+      return res.status(404).json({ 
+        success: false, 
+        msg: "User not found." 
+      });
+    }
+
+    // Update the status
+    const updatedUser = await Client.findByIdAndUpdate(
+      _id,
+      { status: status },
+      { new: true } // Returns the updated document
+    );
+
+    return res.status(200).json({
+      success: true,
+      msg: "Status updated successfully.",
+      data: updatedUser
+    });
+
+  } catch (error) {
+    console.error("Error changing status:", error);
+    return res.status(500).json({
+      success: false,
+      msg: "Internal server error.",
+      error: error.message
+    });
+  }
+});
 
 
+app.delete("/api/clients/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find and delete the client by ID using the Client model
+    const deletedClient = await Client.findByIdAndDelete(id);
+
+    if (!deletedClient) {
+      return res.status(404).json({
+        success: false,
+        msg: "Client not found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      msg: "Client deleted successfully.",
+      data: deletedClient,
+    });
+
+  } catch (error) {
+    console.error("Error deleting client:", error);
+    return res.status(500).json({
+      success: false,
+      msg: "Internal server error.",
+      error: error.message,
+    });
+  }
+});
 
 mongoose
   .connect(process.env.MONGO_URI)

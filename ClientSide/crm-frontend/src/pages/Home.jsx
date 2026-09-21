@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -31,13 +32,25 @@ const submitHandler = async (e)=>{
 }
 
 function Home() {
+
+  const navigate = useNavigate();
+
+const handleAdminLogin = () => {
+  navigate("/login");
+};
+
   return (
     <>
       <div className="container-fluid mypage">
         <div className="row">
-          <div className="col-12 text-end mt-2">
-            <div className="btn btn-success">Admin Login</div>
-          </div>
+         <div className="col-12 text-end mt-2">
+  <button
+    className="btn btn-success"
+    onClick={handleAdminLogin}
+  >
+    Admin Login
+  </button>
+</div>
         </div>
         <div className="row">
           <div className="col-12 text-center custom-text">
@@ -55,7 +68,7 @@ function Home() {
                 <form onSubmit={submitHandler}>
                     <input name='name' type="text" className="form-control my-2" placeholder="Enter your Name" />
                     <input name='email' type="email" className="form-control my-2" placeholder="Enter your Email" />
-                    <input name='mobile' type="tel" className="form-control my-2" placeholder="Enter your Mobile Number" />
+                    <input name='mobile' type="number" className="form-control my-2" placeholder="Enter your Mobile Number" />
                     <input name='address' type="text" className="form-control my-2" placeholder="Enter your Address" />
                     <input name='description' type="text" className="form-control my-2" placeholder="Enter your Description" />
                     <button type="submit" className="btn btn-primary my-2" >Submit</button>

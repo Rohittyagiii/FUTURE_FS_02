@@ -18,12 +18,12 @@ const Navbar = () => {
           Dashboard
         </Link>
 
-        <Link
+        {/* <Link
           to="/add-client"
           className={location.pathname === "/add-client" ? "active" : ""}
         >
           Add Client
-        </Link>
+        </Link> */}
 
         <Link
           to="/clients"

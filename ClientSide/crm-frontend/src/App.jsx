@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import LandingPage from "./pages/LandingPage";
+// import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
 import Home from "./pages/Home";
@@ -33,10 +33,10 @@ function App() {
           element={<Dashboard />}
         />
 
-        <Route
+        {/* <Route
           path="/add-client"
           element={<LandingPage />}
-        />
+        /> */}
 
         <Route
           path="/clients"
