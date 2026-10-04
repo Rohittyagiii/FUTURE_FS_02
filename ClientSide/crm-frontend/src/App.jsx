@@ -5,11 +5,11 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
+import ProtectedRoutes from "../ProtectedRoutes";
 
 function App() {
   return (
@@ -30,17 +30,18 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+          element={ <ProtectedRoutes>
+            <Dashboard/>
+          </ProtectedRoutes>}
         />
 
-        {/* <Route
-          path="/add-client"
-          element={<LandingPage />}
-        /> */}
+       
 
         <Route
           path="/clients"
-          element={<Clients />}
+          element={ <ProtectedRoutes>
+            <Clients/>
+          </ProtectedRoutes>}
         />
 
       </Routes>
